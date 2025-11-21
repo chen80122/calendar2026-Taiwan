@@ -187,7 +187,7 @@
 
 <script>
     const photoList = [
-        "calendar2026-Taiwan/1.jpg", "./2.jpg", "3.jpg", "4.jpg",
+        "1.jpg", "2.jpg", "3.jpg", "4.jpg",
         "5.jpg", "6.jpg", "7.jpg", "8.jpg",
         "9.jpg", "10.jpg", "11.jpg", "12.jpg"
     ];
@@ -241,10 +241,11 @@
     let htmlContent = "";
     
     for (let m = 0; m < 12; m++) {
-        let firstDay = new Date(year, m, 1).getDay(); 
-        let imgSrc = photoList[m];
-        
-        htmlContent += `
+    let firstDay = new Date(year, m, 1).getDay(); 
+    let imgSrc = "images/" + photoList[m]; // <--- 新增了 "images/" 前綴
+    
+    htmlContent += `
+    // ... (後續程式碼不變)
         <div class="month-container">
             <div class="month-photo">
                 <img src="${imgSrc}" onerror="this.src='https://placehold.co/150x400?text=Photo+${m+1}'" alt="Photo ${m+1}">
@@ -338,6 +339,7 @@
 
 </body>
 </html>
+
 
 
 
