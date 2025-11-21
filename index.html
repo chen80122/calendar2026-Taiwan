@@ -186,9 +186,29 @@
 
 <script>
     const photoList = [
-        "1.jpg", "2.jpg", "3.jpg", "4.jpg",
-        "5.jpg", "6.jpg", "7.jpg", "8.jpg",
-        "9.jpg", "10.jpg", "11.jpg", "12.jpg"
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/1.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/2.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/3.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/4.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/5.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/6.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/7.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/8.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/9.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/10.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/11.jpg",
+        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/12.jpg"
+    ];
+    // ... (其他程式碼不變)
+    
+    // ... (在 for 迴圈內)
+    let firstDay = new Date(year, m, 1).getDay(); 
+    
+    // 圖片來源直接使用陣列中的完整 URL
+    let imgSrc = photoList[m]; 
+    
+    htmlContent += `
+    // ...
     ];
 
     const holidays2026 = {
@@ -338,4 +358,5 @@
 
 </body>
 </html>
+
 
