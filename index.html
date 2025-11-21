@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>2026 Calendar (Taiwan Holidays)</title>
+<title>2026 Calendar (English, Photo 50%, Large Font, Saturday Orange)</title>
 <style>
     * { box-sizing: border-box; }
     body {
@@ -13,28 +13,36 @@
         display: flex;
         justify-content: center;
     }
+    
+    /* 7x4 比例 (寬1400px : 高800px) */
     .page-container {
-        width: 1400px;
-        height: 800px;
+        width: 1400px; 
+        height: 800px; 
         background-color: white;
         padding: 20px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         display: flex;
         flex-direction: column;
     }
+    
+    /* 調整 h1 為 Flex 容器，用於對齊主標題和作者資訊 */
     h1 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: left;
+        display: flex; /* 讓內容水平排列 */
+        align-items: center; /* 讓內容垂直置中 */
+        justify-content: center; /* 將整個內容群組置中 */
+        
+        /* 移除 h1 本身的樣式，讓內部的 span/div 獨立控制 */
+        text-align: left; /* 不再依賴 text-align: center */
         margin: 0 0 10px 0;
-        font-size: 32px;
+        font-size: 32px; /* 主標題字體大小 */
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 3px;
         height: 40px;
-        line-height: 1;
+        line-height: 1; /* 確保主標題不會佔用太多高度 */
     }
+
+/* 確保主標題文字本身是置中，並留出右側空間 */
     .main-title-text {
         font-size: 32px;
         font-weight: 800;
@@ -42,37 +50,48 @@
         letter-spacing: 3px;
         white-space: nowrap;
     }
+
+/* ------------------------------------- */
+    /* 新增 CSS：標題後方的文字樣式 */
+    /* ------------------------------------- */
     .title-credits {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        line-height: 1.2;
-        margin-left: 10px;
-        height: 100%;
+        flex-direction: column; /* 讓內容上下垂直排列 */
+        justify-content: center; /* 垂直置中在 h1 高度內 */
+        line-height: 1.2; /* 縮小行距 */
+        margin-left: 10px; /* 與主標題保持間隔 */
+        height: 100%; /* 繼承 h1 的高度 */
     }
+
     .credit-line {
-        font-size: 10px;
+        font-size: 10px; /* 設為小字體，確保不超過主標題的高度 */
         font-weight: normal;
         color: #555;
         text-transform: none;
         letter-spacing: normal;
         white-space: nowrap;
     }
+    /* ------------------------------------- */
+
+    /* 3行4列網格 */
     .calendar-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(3, 1fr);
         gap: 10px;
-        height: calc(100% - 50px);
+        height: calc(100% - 50px); 
     }
+    
     .month-container {
         border: 1px solid #ccc;
         display: flex;
         flex-direction: row;
-        overflow: hidden;
+        overflow: hidden; 
         height: 100%;
         background: #fff;
     }
+
+    /* --- 照片寬度 50% --- */
     .month-photo {
         width: 50%;
         height: 100%;
@@ -80,21 +99,25 @@
         position: relative;
         overflow: hidden;
     }
+    
     .month-photo img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: cover; 
         display: block;
     }
+
+    /* --- 日曆寬度 50% --- */
     .month-dates {
-        width: 50%;
+        width: 50%; 
         height: 100%;
         padding: 3px 2px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-end; /* 垂直靠底對齊 (向下置中) */
         align-items: center;
     }
+
     .month-title {
         font-weight: bold;
         font-size: 16px;
@@ -105,33 +128,43 @@
         background-color: #f5f5f5;
         padding: 2px 0;
     }
+
     table {
         width: 98%;
         border-collapse: collapse;
         text-align: center;
     }
+    
+    /* 星期標題字體 */
     th {
-        font-size: 12px;
+        font-size: 12px; 
         color: #555;
         border-bottom: 1px solid #eee;
-        height: 20px;
+        height: 20px; 
         padding-bottom: 3px;
     }
+    
+    /* 日期數字字體和行高 */
     td {
-        font-size: 11px;
-        line-height: 2.8;
-        padding: 0;
+        font-size: 11px; 
+        line-height: 2.8; 
+        padding: 0; 
         height: auto;
         cursor: default;
     }
+
+    /* 週末/假日標記 */
     .holiday, .sunday {
-        color: #e74c3c;
+        color: #e74c3c; /* 紅色 */
         font-weight: bold;
     }
+    
+    /* 關鍵新增：星期六標記為橘色 */
     .saturday {
-        color: #e67e22;
+        color: #e67e22; /* 橘色 */
         font-weight: bold;
     }
+    
     @media print {
         body { -webkit-print-color-adjust: exact; }
     }
@@ -142,6 +175,7 @@
 <div class="page-container">
     <h1>
         <span class="main-title-text">2026 CALENDAR</span>
+        
         <div class="title-credits">
             <span class="credit-line">Photo by Jiaao</span>
             <span class="credit-line">Made by MengChi</span>
@@ -152,51 +186,66 @@
 
 <script>
     const photoList = [
-        "images/1.jpg", "images/2.jpg", "images/3.jpg", "images/4.jpg",
-        "images/5.jpg", "images/6.jpg", "images/7.jpg", "images/8.jpg",
-        "images/9.jpg", "images/10.jpg", "images/11.jpg", "images/12.jpg"
+        "1.jpg", "2.jpg", "3.jpg", "4.jpg",
+        "5.jpg", "6.jpg", "7.jpg", "8.jpg",
+        "9.jpg", "10.jpg", "11.jpg", "12.jpg"
     ];
 
     const holidays2026 = {
-        "0-1": "中華民國開國紀念日",
-        "0-26": "春節假期",
-        "0-27": "春節假期",
-        "0-28": "除夕",
-        "0-29": "春節",
-        "0-30": "春節假期",
-        "0-31": "春節假期",
-        "1-28": "和平紀念日",
-        "3-3": "清明節",
-        "3-4": "兒童節",
-        "3-5": "民族掃墓節假日",
-        "3-6": "民族掃墓節補假",
-        "4-29": "端午節",
-        "8-25": "中秋節",
-        "9-10": "國慶日"
+        // 1月 (January)
+        "0-1": "開國紀念日 (New Year's Day)",
+
+        // 2月 (February)
+        "1-16": "春節除夕 (LNY Eve)",        // Feb 16
+        "1-17": "春節 (Lunar New Year)",    // Feb 17
+        "1-18": "春節 (LNY Day 2)",          // Feb 18
+        "1-19": "春節 (LNY Day 3)",          // Feb 19
+        "1-28": "和平紀念日 (228 Peace Day)",// Feb 28
+
+        // 4月 (April)
+        "3-4": "兒童節 (Children's Day)",     // Apr 4
+        "3-5": "清明節 (Tomb Sweeping)",     // Apr 5
+
+        // 5月 (May)
+        "4-1": "勞動節 (Labor Day)",         // May 1 (多數行業適用)
+
+        // 6月 (June)
+        "5-10": "端午節 (Dragon Boat)",      // Jun 10
+
+        // 9月 (September)
+        "8-25": "中秋節 (Mid-Autumn)",      // Sep 25
+
+        // 10月 (October)
+        "9-10": "國慶日 (National Day)"      // Oct 10
     };
 
     const monthNames = [
-        "JANUARY", "FEBRUARY", "MARCH",
-        "APRIL", "MAY", "JUNE",
-        "JULY", "AUGUST", "SEPTEMBER",
+        "JANUARY", "FEBRUARY", "MARCH", 
+        "APRIL", "MAY", "JUNE", 
+        "JULY", "AUGUST", "SEPTEMBER", 
         "OCTOBER", "NOVEMBER", "DECEMBER"
     ];
 
-    const dayHeaders = ["S", "M", "T", "W", "T", "F", "S"];
+    const dayHeaders = [
+        "S", "M", "T", "W", "T", "F", "S"
+    ];
 
     const year = 2026;
-    const daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
-
+    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    
     let htmlContent = "";
+    
+    // *** 修正路徑：使用 RAW Content 連結 ***
+    // 這是最可靠的方式，可以直接從 GitHub 讀取圖片檔案內容。
+    const rawBaseURL = "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/";
+    // **********************************
 
-    // ...
-for (let m = 0; m < 12; m++) {
-    let firstDay = new Date(year, m, 1).getDay(); 
-    
-    // **修正路徑：使用簡單的相對路徑**
-    let imgSrc = "images/" + photoList[m]; 
-    
-    htmlContent += `
+    for (let m = 0; m < 12; m++) {
+        let firstDay = new Date(year, m, 1).getDay(); 
+        
+        let imgSrc = rawBaseURL + photoList[m]; // 組合路徑
+        
+        htmlContent += `
         <div class="month-container">
             <div class="month-photo">
                 <img src="${imgSrc}" onerror="this.src='https://placehold.co/150x400?text=Photo+${m+1}'" alt="Photo ${m+1}">
@@ -204,60 +253,84 @@ for (let m = 0; m < 12; m++) {
             <div class="month-dates">
                 <div class="month-title">${monthNames[m]}</div>
                 <table>
-                    <thead><tr>`;
+                    <thead>
+                        <tr>`;
+        
         for (let i = 0; i < 7; i++) {
             let sundayClass = (i === 0) ? 'class="sunday"' : '';
-            htmlContent += `<th ${sundayClass}>${dayHeaders[i]}</th>`;
+            htmlContent += `<th ${sundayClass}>${dayHeaders[i]}</th>`; 
         }
+        
         htmlContent += `</tr></thead><tbody><tr>`;
+
         for (let i = 0; i < firstDay; i++) {
             htmlContent += `<td></td>`;
         }
+
         let dayCount = 1;
         for (let i = firstDay; i < 7; i++) {
+            
             let dateKey = `${m}-${dayCount}`;
             let holidayName = holidays2026[dateKey];
             let isSunday = (i === 0);
-            let isSaturday = (i === 6);
+            let isSaturday = (i === 6); 
             let cellClasses = [];
             let titleAttr = "";
+
             if (holidayName) {
-                cellClasses.push('holiday');
+                cellClasses.push('holiday'); 
                 titleAttr = `title="${holidayName}"`;
             } else if (isSunday) {
-                cellClasses.push('sunday');
+                cellClasses.push('sunday'); 
             } else if (isSaturday) {
-                cellClasses.push('saturday');
+                cellClasses.push('saturday'); 
             }
-            let cellClass = cellClasses.length ? `class="${cellClasses.join(' ')}"` : '';
+
+            let cellClass = cellClasses.length > 0 ? `class="${cellClasses.join(' ')}"` : '';
+
             htmlContent += `<td ${cellClass} ${titleAttr}>${dayCount}</td>`;
             dayCount++;
         }
         htmlContent += `</tr>`;
+
         while (dayCount <= daysInMonth[m]) {
             htmlContent += `<tr>`;
             for (let i = 0; i < 7 && dayCount <= daysInMonth[m]; i++) {
+                
                 let dateKey = `${m}-${dayCount}`;
                 let holidayName = holidays2026[dateKey];
                 let isSunday = (i === 0);
-                let isSaturday = (i === 6);
+                let isSaturday = (i === 6); 
                 let cellClasses = [];
                 let titleAttr = "";
+
                 if (holidayName) {
-                    cellClasses.push('holiday');
+                    cellClasses.push('holiday'); 
                     titleAttr = `title="${holidayName}"`;
                 } else if (isSunday) {
                     cellClasses.push('sunday');
                 } else if (isSaturday) {
                     cellClasses.push('saturday');
                 }
-                let cellClass = cellClasses.length ? `class="${cellClasses.join(' ')}"` : '';
+
+                let cellClass = cellClasses.length > 0 ? `class="${cellClasses.join(' ')}"` : '';
+
                 htmlContent += `<td ${cellClass} ${titleAttr}>${dayCount}</td>`;
                 dayCount++;
             }
             htmlContent += `</tr>`;
         }
-        htmlContent += `</tbody></table></div></div>`;
+        
+        let remainingRows = 6 - Math.ceil((firstDay + daysInMonth[m]) / 7);
+        for(let r=0; r<remainingRows; r++){
+             htmlContent += `<tr style="height: 32px;"><td colspan="7"></td></tr>`; 
+        }
+
+        htmlContent += `
+                    </tbody>
+                </table>
+            </div>
+        </div>`;
     }
 
     document.getElementById('calendar-grid').innerHTML = htmlContent;
@@ -265,4 +338,3 @@ for (let m = 0; m < 12; m++) {
 
 </body>
 </html>
-
