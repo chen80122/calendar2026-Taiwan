@@ -185,6 +185,7 @@
 </div>
 
 <script>
+    // *** 修正路徑：直接使用完整的 RAW URL ***
     const photoList = [
         "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/1.jpg",
         "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/2.jpg",
@@ -199,17 +200,7 @@
         "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/11.jpg",
         "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/12.jpg"
     ];
-    // ... (其他程式碼不變)
-    
-    // ... (在 for 迴圈內)
-    let firstDay = new Date(year, m, 1).getDay(); 
-    
-    // 圖片來源直接使用陣列中的完整 URL
-    let imgSrc = photoList[m]; 
-    
-    htmlContent += `
-    // ...
-    ];
+    // **********************************
 
     const holidays2026 = {
         // 1月 (January)
@@ -254,16 +245,12 @@
     const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     
     let htmlContent = "";
-    
-    // *** 修正路徑：使用 RAW Content 連結 ***
-    // 這是最可靠的方式，可以直接從 GitHub 讀取圖片檔案內容。
-    const rawBaseURL = "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/";
-    // **********************************
 
     for (let m = 0; m < 12; m++) {
         let firstDay = new Date(year, m, 1).getDay(); 
         
-        let imgSrc = rawBaseURL + photoList[m]; // 組合路徑
+        // *** 修正：直接使用 photoList 陣列中的完整網址 ***
+        let imgSrc = photoList[m]; 
         
         htmlContent += `
         <div class="month-container">
@@ -358,5 +345,3 @@
 
 </body>
 </html>
-
-
