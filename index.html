@@ -120,10 +120,9 @@
 
     .month-title {
         font-weight: bold;
-        font-size: 15px;
+        font-size: 16px;
         text-transform: uppercase;
-        margin-bottom: -3px;
-        margin-top:20px;
+        margin-bottom: 1px;
         width: 100%;
         text-align: center;
         background-color: #f5f5f5;
@@ -192,9 +191,6 @@
         "9.jpg", "10.jpg", "11.jpg", "12.jpg"
     ];
 
-    // ************************************************
-    // ** 替換為 2026 台灣 (中華民國) 國定假日 **
-    // ************************************************
     const holidays2026 = {
         // 1月 (January)
         "0-1": "開國紀念日 (New Year's Day)",
@@ -222,7 +218,6 @@
         // 10月 (October)
         "9-10": "國慶日 (National Day)"      // Oct 10
     };
-    // ************************************************
 
     const monthNames = [
         "JANUARY", "FEBRUARY", "MARCH", 
@@ -240,12 +235,17 @@
     
     let htmlContent = "";
     
+    // --- 專案名稱，用於建構 GitHub Pages 正確路徑 ---
+    const repoName = "calendar2026-Taiwan";
+    // --------------------------------------------------
+
     for (let m = 0; m < 12; m++) {
-    let firstDay = new Date(year, m, 1).getDay(); 
-    let imgSrc = "images/" + photoList[m]; // <--- 新增了 "images/" 前綴
-    
-    htmlContent += `
-    // ... (後續程式碼不變)
+        let firstDay = new Date(year, m, 1).getDay(); 
+        
+        // **修正路徑：/專案名稱/images/檔名**
+        let imgSrc = "/" + repoName + "/images/" + photoList[m];
+        
+        htmlContent += `
         <div class="month-container">
             <div class="month-photo">
                 <img src="${imgSrc}" onerror="this.src='https://placehold.co/150x400?text=Photo+${m+1}'" alt="Photo ${m+1}">
@@ -258,7 +258,6 @@
         
         for (let i = 0; i < 7; i++) {
             let sundayClass = (i === 0) ? 'class="sunday"' : '';
-            // 星期六標題不標記顏色，只標記日期
             htmlContent += `<th ${sundayClass}>${dayHeaders[i]}</th>`; 
         }
         
@@ -274,17 +273,17 @@
             let dateKey = `${m}-${dayCount}`;
             let holidayName = holidays2026[dateKey];
             let isSunday = (i === 0);
-            let isSaturday = (i === 6); // 檢查是否為星期六
+            let isSaturday = (i === 6); 
             let cellClasses = [];
             let titleAttr = "";
 
             if (holidayName) {
-                cellClasses.push('holiday'); // 假日優先，紅色
+                cellClasses.push('holiday'); 
                 titleAttr = `title="${holidayName}"`;
             } else if (isSunday) {
-                cellClasses.push('sunday'); // 星期日，紅色
+                cellClasses.push('sunday'); 
             } else if (isSaturday) {
-                cellClasses.push('saturday'); // 星期六，橘色
+                cellClasses.push('saturday'); 
             }
 
             let cellClass = cellClasses.length > 0 ? `class="${cellClasses.join(' ')}"` : '';
@@ -301,7 +300,7 @@
                 let dateKey = `${m}-${dayCount}`;
                 let holidayName = holidays2026[dateKey];
                 let isSunday = (i === 0);
-                let isSaturday = (i === 6); // 檢查是否為星期六
+                let isSaturday = (i === 6); 
                 let cellClasses = [];
                 let titleAttr = "";
 
@@ -339,7 +338,4 @@
 
 </body>
 </html>
-
-
-
 
