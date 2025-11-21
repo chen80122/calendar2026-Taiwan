@@ -238,12 +238,13 @@
     // --- 專案名稱，用於建構 GitHub Pages 正確路徑 ---
     const repoName = "calendar2026-Taiwan";
     // --------------------------------------------------
-
+   //https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/refs/heads/main/images
     for (let m = 0; m < 12; m++) {
         let firstDay = new Date(year, m, 1).getDay(); 
         
         // **修正路徑：/專案名稱/images/檔名**
-        let imgSrc = "/" + repoName + "/images/" + photoList[m];
+        let imgSrc = "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/refs/heads/main/images/" + photoList[m];
+       //let imgSrc = "/" + repoName + "/images/" + photoList[m];
         
         htmlContent += `
         <div class="month-container">
@@ -338,4 +339,5 @@
 
 </body>
 </html>
+
 
