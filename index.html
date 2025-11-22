@@ -42,7 +42,7 @@
         line-height: 1; /* 確保主標題不會佔用太多高度 */
     }
 
-/* 確保主標題文字本身是置中，並留出右側空間 */
+    /* 確保主標題文字本身是置中，並留出右側空間 */
     .main-title-text {
         font-size: 32px;
         font-weight: 800;
@@ -51,7 +51,7 @@
         white-space: nowrap;
     }
 
-/* ------------------------------------- */
+    /* ------------------------------------- */
     /* 新增 CSS：標題後方的文字樣式 */
     /* ------------------------------------- */
     .title-credits {
@@ -185,23 +185,12 @@
 </div>
 
 <script>
-    // ******* 修正路徑：直接使用完整的 RAW URL *******
-    const photoList = [
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/1.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/2.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/3.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/4.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/5.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/6.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/7.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/8.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/9.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/10.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/11.jpg",
-        "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/12.jpg"
-    ];
-    // **********************************
+    // ⚠️ CRITICAL FIX: Base URL for Raw Content on GitHub. 
+    // This template ensures the correct absolute path is constructed for every image.
+    const GITHUB_RAW_BASE_URL = "https://raw.githubusercontent.com/chen80122/calendar2026-Taiwan/main/images/";
 
+    // No need for a photoList array anymore, we build the URL directly.
+    
     const holidays2026 = {
         // 1月 (January)
         "0-1": "開國紀念日 (New Year's Day)",
@@ -215,19 +204,19 @@
 
         // 4月 (April)
         "3-4": "兒童節 (Children's Day)",     // Apr 4
-        "3-5": "清明節 (Tomb Sweeping)",     // Apr 5
+        "3-5": "清明節 (Tomb Sweeping)",      // Apr 5
 
         // 5月 (May)
-        "4-1": "勞動節 (Labor Day)",         // May 1 (多數行業適用)
+        "4-1": "勞動節 (Labor Day)",          // May 1 (多數行業適用)
 
         // 6月 (June)
-        "5-10": "端午節 (Dragon Boat)",      // Jun 10
+        "5-10": "端午節 (Dragon Boat)",       // Jun 10
 
         // 9月 (September)
-        "8-25": "中秋節 (Mid-Autumn)",      // Sep 25
+        "8-25": "中秋節 (Mid-Autumn)",       // Sep 25
 
         // 10月 (October)
-        "9-10": "國慶日 (National Day)"      // Oct 10
+        "9-10": "國慶日 (National Day)"       // Oct 10
     };
 
     const monthNames = [
@@ -249,14 +238,16 @@
     for (let m = 0; m < 12; m++) {
         let firstDay = new Date(year, m, 1).getDay(); 
         
-        // *** 修正：直接使用 photoList 陣列中的完整網址 ***
-        let imgSrc = photoList[m]; 
+        // ✨ NEW: Construct the absolute URL using the base and month index
+        // This is highly resistant to relative path errors.
+        // It assumes your files are named 1.jpg, 2.jpg, etc., with a lowercase extension.
+        let imageIndex = m + 1;
+        let imgSrc = GITHUB_RAW_BASE_URL + imageIndex + ".jpg"; 
         
         htmlContent += `
         <div class="month-container">
             <div class="month-photo">
-                imgsrc = photoList[m]
-                //<img src="${imgSrc}" onerror="this.src='https://placehold.co/150x400?text=Photo+${m+1}'" alt="Photo ${m+1}">
+                <img src="${imgSrc}" onerror="this.src='https://placehold.co/150x400?text=Photo+${imageIndex}'" alt="Photo ${imageIndex}">
             </div>
             <div class="month-dates">
                 <div class="month-title">${monthNames[m]}</div>
@@ -346,5 +337,3 @@
 
 </body>
 </html>
-
-
